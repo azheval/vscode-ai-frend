@@ -1,0 +1,125 @@
+{
+  "name": "vscode-ai-frend",
+  "displayName": "1C.ai Assistant",
+  "description": "VSCode extension for communicating with 1C.ai API",
+  "version": "1.0.37",
+  "publisher": "azheval",
+  "author": {
+    "name": "Valentin Azharonak",
+    "url": "https://github.com/azheval/azheval"
+  },
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/azheval/vscode-ai-frend.git"
+	},
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onCommand:vscode-ai-frend.openChat"
+  ],
+  "main": "extension.js",
+  "contributes": {
+      "commands": [
+        {
+          "command": "vscode-ai-frend.openChat",
+          "title": "Open 1C.ai Chat",
+          "category": "1C.ai Assistant"
+        },
+        {
+          "command": "vscode-ai-frend.newChat",
+          "title": "New 1C.ai Chat",
+          "category": "1C.ai Assistant"
+        },
+        {
+          "command": "vscode-ai-frend.sendSelection",
+          "title": "Send Selection to 1C.ai Chat",
+          "category": "1C.ai Assistant"
+        },
+        {
+          "command": "vscode-ai-frend.openChatPanelFromSidebar",
+          "title": "Open 1C.ai Chat Panel",
+          "icon": "$(comment)",
+          "category": "1C.ai Assistant"
+        }
+      ],
+      "menus": {
+        "editor/context": [
+          {
+            "command": "vscode-ai-frend.sendSelection",
+            "when": "editorHasSelection",
+            "group": "navigation"
+          }
+        ],
+        "view/title": [
+          {
+            "command": "vscode-ai-frend.openChatPanelFromSidebar",
+            "when": "view == 1c-ai-assistant-commands",
+            "group": "navigation"
+          },
+          {
+            "command": "vscode-ai-frend.newChat",
+            "when": "view == vscode-ai-frend.panel",
+            "group": "navigation"
+          }
+        ]
+      },
+      "viewsContainers": {
+        "activitybar": [
+          {
+            "id": "1c-ai-assistant-container",
+            "title": "1C.ai Assistant",
+            "icon": "media/icon.svg"
+          }
+        ]
+      },
+      "views": {
+        "1c-ai-assistant-container": [
+          {
+            "id": "1c-ai-assistant-commands",
+            "name": "Quick Actions"
+          }
+        ]
+      },
+      "configuration": {
+        "title": "1C.ai Assistant",
+        "properties": {
+          "vscode-ai-frend.autoConnect": {
+            "type": "boolean",
+            "default": true,
+            "description": "Automatically connect to 1C.ai when opening the chat panel"
+          },
+          "vscode-ai-frend.defaultToken": {
+            "type": "string",
+            "default": "",
+            "description": "Default API token for 1C.ai connection"
+          },
+          "vscode-ai-frend.defaultBaseUrl": {
+            "type": "string",
+            "default": "https://code.1c.ai",
+            "description": "Default base URL for 1C.ai API"
+          },
+          "vscode-ai-frend.defaultTimeout": {
+            "type": "number",
+            "default": 30,
+            "description": "Default timeout for API requests in seconds"
+          },
+          "vscode-ai-frend.minTextareaHeight": {
+            "type": "number",
+            "default": 64,
+            "description": "Minimum height of the message input textarea in pixels"
+          },
+          "vscode-ai-frend.maxTextareaHeight": {
+            "type": "number",
+            "default": 240,
+            "description": "Maximum height of the message input textarea in pixels"
+          }
+        }
+      }
+    },
+  "scripts": {
+    "package": "npx -y @vscode/vsce package",
+    "test": "echo \"No tests configured\" && exit 0"
+  }
+}

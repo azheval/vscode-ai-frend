@@ -1,0 +1,5 @@
+build/
+Makefile
+.github/
+.vscode/
+.gitignore

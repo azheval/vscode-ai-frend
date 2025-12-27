@@ -1,0 +1,45 @@
+body, html { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; height: 100%; background: var(--vscode-editor-background, #ffffff); color: var(--vscode-editor-foreground, #000000); }
+.chat-container { display:flex; flex-direction: column; height:100vh; }
+.toolbar { display:flex; justify-content: space-between; padding:8px; border-bottom: 1px solid var(--vscode-editorWidget-border, #ddd); background: transparent; gap:8px; align-items:center; }
+.conn-status-container { display: flex; align-items: center; gap: 5px; }
+.conn-indicator { width: 12px; height: 12px; border-radius: 50%; background-color: #ccc; }
+.conn-indicator.connected { background-color: #0f9d58; } /* green for connected */
+.conn-indicator.connecting { background-color: #d19a66; animation: pulse 1.5s infinite; } /* yellow for connecting */
+.conn-indicator.error { background-color: #f14c4c; } /* red for error */
+.conn-indicator.disconnected { background-color: #ccc; } /* gray for disconnected */
+.conn-status-text { font-size:12px; color: var(--vscode-foreground, #666); padding:4px 8px; border-radius:4px; display: none; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+.toolbar button { padding:6px 10px; border-radius:4px; border: 1px solid var(--vscode-focusBorder, rgba(0,0,0,0.1)); background: var(--vscode-button-background, #007acc); color: var(--vscode-button-foreground, #ffffff); cursor:pointer; }
+.history { flex:1; padding:10px; overflow:auto; background: transparent; }
+.message { margin:6px 0; padding:8px 12px; border-radius:8px; max-width:80%; word-break: break-word; white-space: pre-wrap; }
+.message.me { background: var(--vscode-badge-background, #007acc); color: var(--vscode-badge-foreground, #ffffff); margin-left:auto; }
+.message.bot { background: var(--vscode-input-background, #f3f3f3); color: var(--vscode-input-foreground, #000000); margin-right:auto; border:1px solid var(--vscode-editorWidget-border, #ddd); }
+.composer { display:flex; gap:8px; padding:8px; border-top:1px solid var(--vscode-editorWidget-border, #ddd); background: transparent; align-items: flex-end; }
+.composer textarea { flex:1; padding:8px; border-radius:4px; border:1px solid var(--vscode-editorWidget-border, #ccc); background: var(--vscode-input-background, #ffffff); color: var(--vscode-input-foreground, #000000); min-height:64px; max-height:240px; resize:vertical; font-family: inherit; }
+.composer button { padding:8px 12px; border:none; border-radius:4px; background: var(--vscode-button-background, #007acc); color: var(--vscode-button-foreground, #ffffff); cursor:pointer; align-self: flex-end; }
+.composer button:active { transform:translateY(1px); }
+
+/* Message formatting for markdown */
+.message.bot h1, .message.bot h2, .message.bot h3 { margin: 8px 0; padding: 0; }
+.message.bot h1 { font-size: 1.5em; }
+.message.bot h2 { font-size: 1.3em; }
+.message.bot h3 { font-size: 1.1em; }
+.message.bot pre { background: var(--vscode-textCodeBlock-background, #f0f0f0); padding: 8px; border-radius: 4px; overflow: auto; margin: 8px 0; }
+.message.bot code { font-family: 'Courier New', Consolas, monospace; background: var(--vscode-textCodeBlock-background, #f0f0); padding: 2px 4px; border-radius: 3px; }
+.message.bot pre code { display: block; padding: 8px; background: none; }
+
+/* Service menu styles */
+.service-menu { position: relative; display: inline-block; }
+.service-menu-btn { padding: 6px; border: none; background: none; cursor: pointer; color: var(--vscode-foreground, #000000); }
+.service-menu-btn:hover { background: var(--vscode-toolbar-hoverBackground, #e0e0); border-radius: 4px; }
+.service-menu-dropdown { position: absolute; right: 0; top: 100%; background: var(--vscode-menu-background, #ffffff); border: 1px solid var(--vscode-menu-border, #ccc); border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0.15); z-index: 1000; min-width: 120px; display: block; }
+.service-menu-dropdown.hidden { display: none; }
+.service-menu-dropdown button { display: block; width: 100%; padding: 6px 10px; text-align: left; border: none; background: none; cursor: pointer; color: var(--vscode-menu-foreground, #000000); }
+.service-menu-dropdown button:hover { background: var(--vscode-menu-selectionBackground, #0078d4); color: var(--vscode-menu-selectionForeground, #ffffff); }
+
+/* New chat button specific styling */
+#newChatBtn { align-self: flex-start; margin-top: 20px; background: var(--vscode-button-secondaryBackground, #5f6a79); }
+#newChatBtn:hover { background: var(--vscode-button-secondaryHoverBackground, #4c5561); }
+
+/* Textarea resize styling - user can resize vertically */
+.composer textarea { resize: vertical; }
